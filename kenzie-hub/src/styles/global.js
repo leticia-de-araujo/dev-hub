@@ -1,0 +1,18 @@
+import { createGlobalStyle } from "styled-components";
+
+const GlobalStyle = createGlobalStyle`
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-size: 1rem;
+        font-family: 'Inter', sans-serif;
+    }
+
+    .App {
+        background-color: #121214;
+        color: white;
+    }
+    `;
+
+export default GlobalStyle;
