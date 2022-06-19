@@ -30,10 +30,11 @@ const FormLogin = () => {
   });
 
   const clearInputs = (event) => {
-    const inputEmail = event.target.elements.email;
-    const inputPassword = event.target.elements.password;
-    inputEmail.value = "";
-    inputPassword.value = "";
+    const inputs = [...event.target.elements];
+    console.log(inputs);
+    inputs.forEach((input) => {
+      input.value = "";
+    });
   };
 
   const onSubmitFunction = (dataUser, event) => {
@@ -44,12 +45,17 @@ const FormLogin = () => {
       })
       .then((response) => {
         console.log(response);
-        const idUser = response.user.id
-        console.log(idUser)
-        const token = response.token
-        console.log(token)
+
+        const idUser = response.data.user.id;
+        console.log(idUser);
+
+        const token = response.data.token;
+        console.log(token);
+        window.localStorage.setItem("token", token)
+
         clearInputs(event);
-        history.push(`/home/${idUser}`)
+        
+        history.push(`/home/${idUser}`);
       })
       .catch((error) => {
         console.log(error);
@@ -69,7 +75,7 @@ const FormLogin = () => {
               variant="outlined"
               size="small"
               color="secondary"
-              placeholder="Enter your email"
+              placeholder="Your email"
               {...register("email")}
               error={errors.email ? true : false}
               helperText={errors.email ? errors.email.message : null}
@@ -81,7 +87,7 @@ const FormLogin = () => {
               variant="outlined"
               size="small"
               color="secondary"
-              placeholder="Enter your password"
+              placeholder="Your password"
               type="password"
               {...register("password")}
               error={errors.password ? true : false}
