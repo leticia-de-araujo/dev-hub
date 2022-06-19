@@ -9,10 +9,7 @@ const GlobalStyle = createGlobalStyle`
         font-family: 'Inter', sans-serif;
     }
 
-    .App {
-        background-color: #121214;
-        color: white;
-    }
+ 
     `;
 
 export default GlobalStyle;
