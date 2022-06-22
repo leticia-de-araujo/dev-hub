@@ -1,6 +1,7 @@
 import FormLogin from "../../components/FormLogin";
 
 import Logo from "../../imgs/Logo.png";
+
 import { Box } from "@mui/material";
 
 const Login = () => {
@@ -9,6 +10,7 @@ const Login = () => {
       <header style={{ textAlign: "center" }}>
         <img src={Logo} alt="Logo Kenzie Hub" />
       </header>
+
       <FormLogin />
     </Box>
   );

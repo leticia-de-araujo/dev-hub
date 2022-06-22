@@ -4,7 +4,7 @@ import Login from "../pages/Login";
 import Register from "../pages/Register";
 import Home from "../pages/Home";
 
-const Routes = () => {
+const Routes = ({ homePage, setHomePage }) => {
   return (
     <>
       <Switch>
@@ -13,11 +13,11 @@ const Routes = () => {
         </Route>
 
         <Route exact path="/register">
-          <Register />
+          <Register homePage={homePage} setHomePage={setHomePage} />
         </Route>
 
         <Route exact path="/home/:id">
-          <Home />
+          <Home homePage={homePage} setHomePage={setHomePage} />
         </Route>
       </Switch>
     </>

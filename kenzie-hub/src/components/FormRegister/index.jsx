@@ -6,9 +6,13 @@ import { useHistory } from "react-router-dom";
 import { Button, MenuItem } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
 
-import { StyledPaper, StyledForm, StyledTextField, theme } from "./style";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+import { StyledPaper, StyledForm, StyledTextField } from "./style";
+import { theme } from "../../styles/global";
 import api from "../../services/api";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const FormRegister = () => {
   const history = useHistory();
@@ -17,8 +21,26 @@ const FormRegister = () => {
     "First module (Introduction to Frontend)"
   );
 
+  const modules = [
+    {
+      value: "First module (Introduction to Frontend)",
+      label: "First module",
+    },
+    {
+      value: "Second module (Advanced front-end)",
+      label: "Second module",
+    },
+    {
+      value: "Third module (Introduction to Backend)",
+      label: "Third module",
+    },
+    {
+      value: "Fourth module (Advanced Backend)",
+      label: "Fourth module",
+    },
+  ];
+
   const handleChange = (event) => {
-    console.log(event.target.value);
     setModule(event.target.value);
   };
 
@@ -41,20 +63,28 @@ const FormRegister = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    reset,
+    formState: { errors, isSubmitSuccessful },
   } = useForm({
     resolver: yupResolver(formSchema),
+    defaultValues: {
+      name: "",
+      email: "",
+      password: "",
+      confirmPassword: "",
+      bio: "",
+      contact: "",
+      course_module: "",
+    },
   });
 
-  const clearInputs = (event) => {
-    const inputs = [...event.target.elements];
-    console.log(inputs);
-    inputs.forEach((input) => {
-      input.value = "";
-    });
-  };
+  useEffect(() => {
+    if (isSubmitSuccessful) {
+      reset();
+    }
+  }, [isSubmitSuccessful, reset]);
 
-  const onSubmitFunction = (dataUser, event) => {
+  const onSubmitFunction = (dataUser) => {
     const dataFixedArray = Object.entries(dataUser).filter(
       (entrie) => entrie[0] !== "confirmPassword"
     );
@@ -76,34 +106,43 @@ const FormRegister = () => {
       })
       .then((response) => {
         console.log(response);
-        const idUser = response.data.id;
-        clearInputs(event);
-        history.push(`/home/${idUser}`);
+
+        toast.success(
+          "Congratulations, your account has been successfully created! Please log in.",
+          {
+            position: "top-right",
+            autoClose: 2500,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+          }
+        );
+
+        const goToLogin = () => {
+          history.push("/");
+        };
+
+        setTimeout(goToLogin, 3100);
       })
       .catch((error) => {
         console.log(error);
-        clearInputs(event);
+        if (error.response.data.message === "Email already exists") {
+          toast.error("Email already exists! Please use a different email.", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+          });
+        }
       });
   };
-
-  const modules = [
-    {
-      value: "First module (Introduction to Frontend)",
-      label: "First module",
-    },
-    {
-      value: "Second module (Advanced front-end)",
-      label: "Second module",
-    },
-    {
-      value: "Third module (Introduction to Backend)",
-      label: "Third module",
-    },
-    {
-      value: "Fourth module (Advanced Backend)",
-      label: "Fourth module",
-    },
-  ];
 
   return (
     <StyledPaper elevation={3}>
@@ -223,6 +262,17 @@ const FormRegister = () => {
           </Button>
         </ThemeProvider>
       </StyledForm>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </StyledPaper>
   );
 };

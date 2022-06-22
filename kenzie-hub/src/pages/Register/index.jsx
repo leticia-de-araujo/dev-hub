@@ -1,11 +1,11 @@
 import { Box } from "@mui/material";
 import FormRegister from "../../components/FormRegister";
-import Header from "../../components/Header";
+import NavBar from "../../components/NavBar";
 
-const Register = () => {
+const Register = ({ homePage, setHomePage }) => {
   return (
     <Box>
-      <Header />
+      <NavBar homePage={homePage} setHomePage={setHomePage} />
       <FormRegister />
     </Box>
   );
