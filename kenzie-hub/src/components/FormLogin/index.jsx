@@ -6,8 +6,13 @@ import { useHistory } from "react-router-dom";
 import { Button } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
 
-import { StyledPaper, StyledForm, StyledTextField, theme } from "./style";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+import { StyledPaper, StyledForm, StyledTextField } from "./style";
+import { theme } from "../../styles/global";
 import api from "../../services/api";
+import { useEffect } from "react";
 
 const FormLogin = () => {
   const history = useHistory();
@@ -24,21 +29,22 @@ const FormLogin = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    reset,
+    formState: { errors, isSubmitSuccessful },
   } = useForm({
     resolver: yupResolver(formSchema),
+    defaultValues: { email: "", password: "" },
   });
 
-  const clearInputs = (event) => {
-    const inputs = [...event.target.elements];
-    console.log(inputs);
-    inputs.forEach((input) => {
-      input.value = "";
-    });
-  };
+  // useEffect(() => {
+  //   if (isSubmitSuccessful) {
+  //     reset();
+  //   }
+  // }, [isSubmitSuccessful, reset]);
 
-  const onSubmitFunction = (dataUser, event) => {
+  const onSubmitFunction = (dataUser) => {
     console.log(dataUser);
+    window.localStorage.clear();
     api
       .post("/sessions", dataUser, {
         headers: { "Content-Type": "application/json" },
@@ -48,18 +54,46 @@ const FormLogin = () => {
 
         const idUser = response.data.user.id;
         console.log(idUser);
+        window.localStorage.setItem("userId", idUser);
 
         const token = response.data.token;
         console.log(token);
-        window.localStorage.setItem("token", token)
+        window.localStorage.setItem("token", token);
 
-        clearInputs(event);
-        
-        history.push(`/home/${idUser}`);
+        reset();
+
+        toast.success("Successful login!", {
+          position: "top-right",
+          autoClose: 1900,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
+
+        const goToHome = () => {
+          history.push(`/home/${idUser}`);
+        };
+
+        setTimeout(goToHome, 2200);
       })
       .catch((error) => {
         console.log(error);
-        clearInputs(event);
+        toast.error(
+          "Login failed! Please check if your email and password are correct.",
+          {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+          }
+        );
       });
   };
 
@@ -116,6 +150,17 @@ const FormLogin = () => {
           </div>
         </ThemeProvider>
       </StyledForm>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </StyledPaper>
   );
 };

@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import * as muiStyles from "@mui/material/styles";
-import { createTheme } from "@mui/material/styles";
 import { Paper, TextField } from "@mui/material";
 
 export const StyledPaper = muiStyles.styled(Paper)`
@@ -51,6 +50,10 @@ export const StyledForm = styled.form`
     }
   }
 
+  input {
+    font-size: 0.8rem;
+  }
+
   .div-createAccount {
     width: 100%;
     display: flex;
@@ -69,23 +72,12 @@ export const StyledForm = styled.form`
 `;
 
 export const StyledTextField = muiStyles.styled(TextField)`
-    background-color: #343B41;
-    border-radius: 0.201rem;
     width: 100%;
 
   input {
     color: #F8F9FA;
+    background-color: #343B41;
+    border-radius: 0.3rem;
   }
  
 `;
-
-export const theme = createTheme({
-  palette: {
-    primary: {
-      main: "#FF577F",
-    },
-    secondary: {
-      main: "#868e96",
-    },
-  },
-});
