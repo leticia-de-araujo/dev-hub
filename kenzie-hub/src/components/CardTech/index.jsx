@@ -1,6 +1,18 @@
-const CardTech = ({ tech, setOpenModalEditDelete }) => {
-  const handleOpenModalEditDelete = () => {
+import { useState } from "react";
+import FormEditDeleteTech from "../FormEditDeleteTech";
+
+const CardTech = ({
+  tech,
+  openModalEditDelete,
+  setOpenModalEditDelete,
+  techStatus,
+}) => {
+  const [techId, setTechId] = useState("");
+
+  const handleOpenModalEditDelete = (currentTech) => {
+    console.log(currentTech);
     setOpenModalEditDelete(true);
+    setTechId(currentTech);
   };
 
   const techStatusInEnglish = (status) => {
@@ -16,14 +28,29 @@ const CardTech = ({ tech, setOpenModalEditDelete }) => {
   const techStatusTranslated = techStatusInEnglish(tech.status);
 
   return (
-    <>
-      <li id={tech.id} onClick={handleOpenModalEditDelete}>
-        <h4>{tech.title}</h4>
-        <div className="Main-li-right">
-          <p>{techStatusTranslated}</p>
-        </div>
-      </li>
-    </>
+    tech && (
+      <>
+        <li
+          onClick={() => {
+            handleOpenModalEditDelete(tech);
+          }}
+        >
+          <h4>{tech.title}</h4>
+          <div className="Main-li-right">
+            <p>{techStatusTranslated}</p>
+          </div>
+        </li>
+
+        <FormEditDeleteTech
+          tech={tech}
+          techId={techId}
+          techStatus={techStatus}
+          openModalEditDelete={openModalEditDelete}
+          setOpenModalEditDelete={setOpenModalEditDelete}
+        />
+        {console.log(techId)}
+      </>
+    )
   );
 };
 

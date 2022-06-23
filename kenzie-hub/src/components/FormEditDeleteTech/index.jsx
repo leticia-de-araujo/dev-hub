@@ -9,11 +9,15 @@ import CloseIcon from "@mui/icons-material/Close";
 import { StyledBox, StyledForm, StyledTextField, StyledButton } from "./style";
 
 const FormEditDeleteTech = ({
+  tech,
+  techId,
   techStatus,
   openModalEditDelete,
   setOpenModalEditDelete,
 }) => {
   const [statusEditDelete, setStatusEditDelete] = useState("");
+
+  // console.log(tech);
 
   const handleCloseModalEditDelete = () => {
     setOpenModalEditDelete(false);
@@ -62,72 +66,71 @@ const FormEditDeleteTech = ({
   const onSubmitFunction = (data) => {};
 
   return (
-    <div>
-      <Modal
-        aria-labelledby="transition-modal-title"
-        aria-describedby="transition-modal-description"
-        open={openModalEditDelete}
-        onClose={handleCloseModalEditDelete}
-        closeAfterTransition
-        BackdropComponent={Backdrop}
-        BackdropProps={{
-          timeout: 500,
-        }}
-      >
-        <Fade in={openModalEditDelete}>
-          <StyledBox>
-            <div className="FormEditDeleteTech-Box-header">
-              <h2>Tech details</h2>
-              <IconButton
-                color="primary"
+    <Modal
+      aria-labelledby="transition-modal-title"
+      aria-describedby="transition-modal-description"
+      open={openModalEditDelete}
+      onClose={handleCloseModalEditDelete}
+      closeAfterTransition
+      BackdropComponent={Backdrop}
+      BackdropProps={{
+        timeout: 500,
+      }}
+    >
+      <Fade in={openModalEditDelete}>
+        <StyledBox>
+          <div className="FormEditDeleteTech-Box-header">
+            <h2>Tech details</h2>
+            <IconButton
+              color="primary"
+              size="small"
+              onClick={handleCloseModalEditDelete}
+            >
+              <CloseIcon sx={{ width: "1rem", height: "1rem" }} />
+            </IconButton>
+          </div>
+
+          <StyledForm onSubmit={handleSubmit(onSubmitFunction)}>
+            <label>
+              Tech name
+              <StyledTextField
+                id="transition-modal-description"
+                sx={{ mt: 2 }}
+                value={tech.title}
+                variant="outlined"
                 size="small"
-                onClick={handleCloseModalEditDelete}
+                color="secondary"
+                placeholder="Tech name"
+                {...register("title")}
+                error={errors.title ? true : false}
+                helperText={errors.title ? errors.title.message : null}
+              />
+            </label>
+
+            <label>
+              Your current level of knowledge in this tech
+              <StyledTextField
+                id="outlined-select-module"
+                size="small"
+                color="secondary"
+                {...register("status")}
+                select
+                value={statusEditDelete}
+                onChange={handleChange}
               >
-                <CloseIcon sx={{ width: "1rem", height: "1rem" }} />
-              </IconButton>
-            </div>
-
-            <StyledForm onSubmit={handleSubmit(onSubmitFunction)}>
-              <label>
-                Tech name
-                <StyledTextField
-                  id="transition-modal-description"
-                  sx={{ mt: 2 }}
-                  variant="outlined"
-                  size="small"
-                  color="secondary"
-                  placeholder="Tech name"
-                  {...register("title")}
-                  error={errors.title ? true : false}
-                  helperText={errors.title ? errors.title.message : null}
-                />
-              </label>
-
-              <label>
-                Your current level of knowledge in this tech
-                <StyledTextField
-                  id="outlined-select-module"
-                  size="small"
-                  color="secondary"
-                  {...register("status")}
-                  select
-                  value={statusEditDelete}
-                  onChange={handleChange}
-                >
-                  {techStatus.map((option) => (
-                    <MenuItem key={option.value} value={option.value}>
-                      {option.label}
-                    </MenuItem>
-                  ))}
-                </StyledTextField>
-              </label>
-              <StyledButton>Edit tech</StyledButton>
-              <StyledButton>Delete Tech</StyledButton>
-            </StyledForm>
-          </StyledBox>
-        </Fade>
-      </Modal>
-    </div>
+                {techStatus.map((option) => (
+                  <MenuItem key={option.value} value={option.value}>
+                    {option.label}
+                  </MenuItem>
+                ))}
+              </StyledTextField>
+            </label>
+            <StyledButton>Edit tech</StyledButton>
+            <StyledButton>Delete Tech</StyledButton>
+          </StyledForm>
+        </StyledBox>
+      </Fade>
+    </Modal>
   );
 };
 

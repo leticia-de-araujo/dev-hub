@@ -60,25 +60,25 @@ const Main = ({
           {userTechs.length !== 0 &&
             userTechs.map((tech) => {
               return (
-                <CardTech
-                  key={tech.id}
-                  tech={tech}
-                  setOpenModalEditDelete={setOpenModalEditDelete}
-                />
+                <>
+                  <CardTech
+                    key={tech.id}
+                    tech={tech}
+                    techStatus={techStatus}
+                    openModalEditDelete={openModalEditDelete}
+                    setOpenModalEditDelete={setOpenModalEditDelete}
+                  />
+                </>
               );
             })}
         </ul>
+
         <FormAddTech
           techStatus={techStatus}
           userTechs={userTechs}
           setUserTechs={setUserTechs}
           openModalAdd={openModalAdd}
           setOpenModalAdd={setOpenModalAdd}
-        />
-        <FormEditDeleteTech
-          techStatus={techStatus}
-          openModalEditDelete={openModalEditDelete}
-          setOpenModalEditDelete={setOpenModalEditDelete}
         />
       </ThemeProvider>
     </StyledMain>

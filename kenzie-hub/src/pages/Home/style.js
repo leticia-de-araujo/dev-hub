@@ -4,9 +4,10 @@ export const StyledDivHome = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
-  height: 100%;
+  height: 100vh;
   width: 100%;
   align-items: center;
+  padding: 0 0.5rem;
 
   nav {
     background-color: #121214;
