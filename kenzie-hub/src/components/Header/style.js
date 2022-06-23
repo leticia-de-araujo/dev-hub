@@ -21,7 +21,7 @@ const StyledHeader = styled.header`
 
   p {
     font-weight: 400;
-    font-size: 12px;
+    font-size: 0.8rem;
     color: #868e96;
   }
 `;

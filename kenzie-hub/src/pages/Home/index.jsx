@@ -14,6 +14,8 @@ const Home = ({ homePage, setHomePage }) => {
 
   const [openModalAdd, setOpenModalAdd] = useState(false);
 
+  const [openModalEditDelete, setOpenModalEditDelete] = useState(false);
+
   useEffect(() => {
     api
       .get(`/users/${params.id}`)
@@ -25,8 +27,6 @@ const Home = ({ homePage, setHomePage }) => {
       });
   }, []);
 
-  console.log(user);
-
   return (
     user && (
       <StyledDivHome>
@@ -36,6 +36,8 @@ const Home = ({ homePage, setHomePage }) => {
           techs={user.data.techs}
           openModalAdd={openModalAdd}
           setOpenModalAdd={setOpenModalAdd}
+          openModalEditDelete={openModalEditDelete}
+          setOpenModalEditDelete={setOpenModalEditDelete}
         />
       </StyledDivHome>
     )
