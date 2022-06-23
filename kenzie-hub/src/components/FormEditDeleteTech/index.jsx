@@ -8,87 +8,80 @@ import CloseIcon from "@mui/icons-material/Close";
 
 import { StyledBox, StyledForm, StyledTextField, StyledButton } from "./style";
 
-import api from "../../services/api";
-
-const FormAddTech = ({
-  userTechs,
-  setUserTechs,
+const FormEditDeleteTech = ({
   techStatus,
-  openModalAdd,
-  setOpenModalAdd,
+  openModalEditDelete,
+  setOpenModalEditDelete,
 }) => {
-  const [statusAdd, setStatusAdd] = useState("Iniciante");
+  const [statusEditDelete, setStatusEditDelete] = useState("");
+
+  const handleCloseModalEditDelete = () => {
+    setOpenModalEditDelete(false);
+  };
+
+  //   const [currentUser, setCurrentUser] = useState(undefined);
+
+  //   const params = useParams();
+
+  //   useEffect(() => {
+  //     api
+  //       .get(`/users/${params.id}`)
+  //       .then((response) => {
+  //         setCurrentUser(response);
+  //       })
+  //       .catch((error) => {
+  //         console.log(error);
+  //       });
+  //   }, []);
+
+  //   const userToken = window.localStorage.getItem("token");
 
   const handleChange = (event) => {
-    setStatusAdd(event.target.value);
+    setStatusEditDelete(event.target.value);
   };
 
   const formSchema = yup.object().shape({
     title: yup.string().required("Tech name is required."),
     status: yup
       .string()
-      .required("Please select your current level of knowledge"),
+      .required("Please select your current level of knowledge in this tech"),
   });
 
   const {
     register,
     handleSubmit,
-    reset,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(formSchema),
     defaultValues: {
       title: "",
-      status: `${techStatus[0].value}`,
+      status: ``,
     },
   });
 
-  const userToken = window.localStorage.getItem("token");
-
-  const onSubmitFunction = (data) => {
-    api
-      .post(`/users/techs`, data, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${userToken}`,
-        },
-      })
-      .then((response) => {
-        console.log(response);
-        setUserTechs([...userTechs, response.data]);
-        handleCloseModalAdd();
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-
-  const handleCloseModalAdd = () => {
-    reset();
-    setOpenModalAdd(false);
-  };
+  const onSubmitFunction = (data) => {};
 
   return (
     <div>
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
-        open={openModalAdd}
-        onClose={handleCloseModalAdd}
+        open={openModalEditDelete}
+        onClose={handleCloseModalEditDelete}
         closeAfterTransition
         BackdropComponent={Backdrop}
         BackdropProps={{
           timeout: 500,
         }}
       >
-        <Fade in={openModalAdd}>
+        <Fade in={openModalEditDelete}>
           <StyledBox>
-            <div className="FormAddTech-Box-header">
-              <h2>Add technology</h2>
+            <div className="FormEditDeleteTech-Box-header">
+              <h2>Tech details</h2>
               <IconButton
                 color="primary"
                 size="small"
-                onClick={handleCloseModalAdd}
+                onClick={handleCloseModalEditDelete}
               >
                 <CloseIcon sx={{ width: "1rem", height: "1rem" }} />
               </IconButton>
@@ -111,14 +104,14 @@ const FormAddTech = ({
               </label>
 
               <label>
-                Select your current level of knowledge in this tech
+                Your current level of knowledge in this tech
                 <StyledTextField
                   id="outlined-select-module"
                   size="small"
                   color="secondary"
                   {...register("status")}
                   select
-                  value={statusAdd}
+                  value={statusEditDelete}
                   onChange={handleChange}
                 >
                   {techStatus.map((option) => (
@@ -128,7 +121,8 @@ const FormAddTech = ({
                   ))}
                 </StyledTextField>
               </label>
-              <StyledButton type="submit">Add tech</StyledButton>
+              <StyledButton>Edit tech</StyledButton>
+              <StyledButton>Delete Tech</StyledButton>
             </StyledForm>
           </StyledBox>
         </Fade>
@@ -137,4 +131,4 @@ const FormAddTech = ({
   );
 };
 
-export default FormAddTech;
+export default FormEditDeleteTech;

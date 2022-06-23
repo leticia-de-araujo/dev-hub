@@ -1,27 +1,53 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { Button, IconButton, ThemeProvider } from "@mui/material";
+import { useState } from "react";
+
+import { ThemeProvider } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
-import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
+
 import { StyledMain, StyledButton } from "./style";
 import { theme } from "../../styles/global";
-import { useEffect, useState } from "react";
-import api from "../../services/api";
-import FormAddTech from "../FormAddTech";
 
-const Main = ({ techs, openModalAdd, setOpenModalAdd }) => {
+import FormAddTech from "../FormAddTech";
+import FormEditDeleteTech from "../FormEditDeleteTech";
+import CardTech from "../CardTech";
+
+const Main = ({
+  techs,
+  openModalAdd,
+  setOpenModalAdd,
+  openModalEditDelete,
+  setOpenModalEditDelete,
+}) => {
   const [userTechs, setUserTechs] = useState(techs);
 
   const handleOpenModalAdd = () => {
     setOpenModalAdd(true);
   };
 
-  console.log(techs);
+  const techStatus = [
+    {
+      value: "Iniciante",
+      label: "Begginer",
+    },
+    {
+      value: "Intermediário",
+      label: "Intermediary",
+    },
+    {
+      value: "Avançado",
+      label: "Advanced",
+    },
+  ];
 
   return (
     <StyledMain>
       <ThemeProvider theme={theme}>
         <div className="Main-topDiv">
-          <h3>Technologies</h3>
+          <div className="Main-topDiv-left">
+            <h3>Technologies</h3>
+            <span>Click on a technology to edit or delete it</span>
+          </div>
+
           <StyledButton
             variant="filled"
             aria-label="add"
@@ -34,27 +60,25 @@ const Main = ({ techs, openModalAdd, setOpenModalAdd }) => {
           {userTechs.length !== 0 &&
             userTechs.map((tech) => {
               return (
-                <li>
-                  <h4>{tech.title}</h4>
-                  <div className="Main-li-right">
-                    <p>{tech.status}</p>
-
-                    <IconButton color="primary" size="small">
-                      <DeleteOutlinedIcon
-                        sx={{ width: "1rem", height: "1rem" }}
-                      />
-                    </IconButton>
-                  </div>
-                </li>
+                <CardTech
+                  key={tech.id}
+                  tech={tech}
+                  setOpenModalEditDelete={setOpenModalEditDelete}
+                />
               );
             })}
         </ul>
         <FormAddTech
-          techs={techs}
-          openModalAdd={openModalAdd}
-          setOpenModalAdd={setOpenModalAdd}
+          techStatus={techStatus}
           userTechs={userTechs}
           setUserTechs={setUserTechs}
+          openModalAdd={openModalAdd}
+          setOpenModalAdd={setOpenModalAdd}
+        />
+        <FormEditDeleteTech
+          techStatus={techStatus}
+          openModalEditDelete={openModalEditDelete}
+          setOpenModalEditDelete={setOpenModalEditDelete}
         />
       </ThemeProvider>
     </StyledMain>

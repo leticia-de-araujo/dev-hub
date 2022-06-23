@@ -14,6 +14,18 @@ export const StyledMain = styled.main`
     align-items: center;
     justify-content: space-between;
     margin-top: 20px;
+
+    .Main-topDiv-left {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.5rem;
+
+      span {
+        font-size: 0.6rem;
+        color: #868e96;
+      }
+    }
   }
 
   .Main-ul {
