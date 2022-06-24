@@ -88,7 +88,6 @@ const FormRegister = () => {
     const dataFixedArray = Object.entries(dataUser).filter(
       (entrie) => entrie[0] !== "confirmPassword"
     );
-    console.log(dataFixedArray);
 
     let dataObject = {};
 
@@ -98,15 +97,11 @@ const FormRegister = () => {
       dataObject[key] = value;
     });
 
-    console.log(dataObject);
-
     api
       .post("/users", dataObject, {
         headers: { "Content-Type": "application/json" },
       })
       .then((response) => {
-        console.log(response);
-
         toast.success(
           "Congratulations, your account has been successfully created! Please log in.",
           {
@@ -255,7 +250,12 @@ const FormRegister = () => {
           <Button
             variant="contained"
             color="primary"
-            sx={{ textTransform: "capitalize", width: "100%" }}
+            sx={{
+              textTransform: "capitalize",
+              width: "100%",
+              mt: "0.6rem",
+              mb: "0.6rem",
+            }}
             type="submit"
           >
             Create your account

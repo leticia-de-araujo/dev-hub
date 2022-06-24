@@ -30,34 +30,25 @@ const FormLogin = () => {
     register,
     handleSubmit,
     reset,
-    formState: { errors, isSubmitSuccessful },
+    formState: { errors },
   } = useForm({
     resolver: yupResolver(formSchema),
     defaultValues: { email: "", password: "" },
   });
 
-  // useEffect(() => {
-  //   if (isSubmitSuccessful) {
-  //     reset();
-  //   }
-  // }, [isSubmitSuccessful, reset]);
 
   const onSubmitFunction = (dataUser) => {
-    console.log(dataUser);
+   ;
     window.localStorage.clear();
     api
       .post("/sessions", dataUser, {
         headers: { "Content-Type": "application/json" },
       })
       .then((response) => {
-        console.log(response);
-
         const idUser = response.data.user.id;
-        console.log(idUser);
         window.localStorage.setItem("userId", idUser);
 
         const token = response.data.token;
-        console.log(token);
         window.localStorage.setItem("token", token);
 
         reset();

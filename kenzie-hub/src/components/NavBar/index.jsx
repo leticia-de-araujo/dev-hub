@@ -26,7 +26,7 @@ const NavBar = ({ homePage, setHomePage }) => {
         <img src={Logo} alt="Logo Kenzie Hub" />
 
         <StyledButton variant="contained" onClick={goToLogin}>
-          {homePage ? "Sign out" : "Go back to Login"}
+          {!homePage ? "Go back to Login" : "Sign out"}
         </StyledButton>
       </StyledNavBar>
     </ThemeProvider>

@@ -7,13 +7,14 @@ export const StyledPaper = muiStyles.styled(Paper)`
     color: white;
     border-radius: 0.25rem;
     box-shadow: 0rem 0.25rem 2.5rem -0.625rem rgba(0, 0, 0, 0.25);
-    width: 100%;
+    width: 17rem;
     height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    margin-top: 1.25rem;
+    margin-top: 5rem;
+    margin-bottom: 1.5rem;
 
     .FormRegister-header {
         display: flex;
@@ -82,4 +83,3 @@ export const StyledTextField = muiStyles.styled(TextField)`
         color: #F8F9FA;
     }
 `;
-

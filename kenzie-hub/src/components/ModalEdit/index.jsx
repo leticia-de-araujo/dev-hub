@@ -3,66 +3,55 @@ import { useState } from "react";
 import api from "../../services/api";
 
 import { useForm } from "react-hook-form";
-import * as yup from "yup";
-import { yupResolver } from "@hookform/resolvers/yup";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import { Backdrop, Modal, Fade, MenuItem, IconButton } from "@mui/material";
+import { Box, Fade, IconButton, MenuItem } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 
 import {
-  StyledBox,
-  StyledForm,
-  StyledTextField,
   StyledButton,
+  StyledForm,
   StyledModal,
+  StyledTextField,
 } from "./style";
 
-const FormAddTech = ({
+const ModalEdit = ({
   userTechs,
   setUserTechs,
+  techs,
   techStatus,
-  openModalAdd,
-  setOpenModalAdd,
+  modalEdit,
+  setModalEdit,
+  openModalEdit,
 }) => {
-  const [statusAdd, setStatusAdd] = useState("Iniciante");
+  const [techTitle, setTechTitle] = useState(
+    userTechs.length > 0 ? userTechs[0].title : ""
+  );
 
-  const handleChange = (event) => {
-    setStatusAdd(event.target.value);
-  };
+  const [currentTechStatus, setCurrentTechStatus] = useState("Iniciante");
 
-  const formSchema = yup.object().shape({
-    title: yup.string().required("Tech name is required."),
-    status: yup
-      .string()
-      .required("Please select your current level of knowledge"),
-  });
-
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors },
-  } = useForm({
-    resolver: yupResolver(formSchema),
-  });
+  const { register, handleSubmit } = useForm();
 
   const userToken = window.localStorage.getItem("token");
 
   const onSubmitFunction = (data) => {
+    const techToEdit = userTechs.find((tech) => tech.title === data.title);
+    const dataObject = {
+      status: `${data.status}`,
+    };
+
     api
-      .post(`/users/techs`, data, {
+      .put(`/users/techs/${techToEdit.id}`, dataObject, {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${userToken}`,
         },
       })
       .then((response) => {
-    
-        setUserTechs([...userTechs, response.data]);
-        toast.success("Tech added successfully!", {
+        editTech(response);
+        toast.success("Tech edited successfully!", {
           position: "top-right",
           autoClose: 2200,
           hideProgressBar: false,
@@ -72,7 +61,7 @@ const FormAddTech = ({
           progress: undefined,
           theme: "dark",
         });
-        handleCloseModalAdd();
+        closeModalEdit();
       })
       .catch((error) => {
         console.log(error);
@@ -86,27 +75,40 @@ const FormAddTech = ({
           progress: undefined,
           theme: "dark",
         });
-        handleCloseModalAdd();
+        closeModalEdit();
       });
   };
 
-  const handleCloseModalAdd = () => {
-    reset();
-    setOpenModalAdd(false);
+  const editTech = (resp) => {
+    const techToEdit = userTechs.find((tech) => tech.title === resp.data.title);
+    techToEdit.status = resp.data.status;
+    return techToEdit;
+  };
+
+  const closeModalEdit = () => {
+    setModalEdit(false);
+  };
+
+  const handleChangeTitle = (event) => {
+    setTechTitle(event.target.value);
+  };
+
+  const handleChangeStatus = (event) => {
+    setCurrentTechStatus(event.target.value);
   };
 
   return (
     <>
-      {openModalAdd && (
+      {modalEdit && (
         <StyledModal>
-          <Fade in={openModalAdd}>
-            <StyledBox>
-              <div className="FormAddTech-Box-header">
-                <h2>Add technology</h2>
+          <Fade in={modalEdit}>
+            <Box className="ModalEdit-box">
+              <div className="ModalEdit-box-header">
+                <h2>Edit Tech</h2>
                 <IconButton
                   color="primary"
                   size="small"
-                  onClick={handleCloseModalAdd}
+                  onClick={closeModalEdit}
                 >
                   <CloseIcon sx={{ width: "1rem", height: "1rem" }} />
                 </IconButton>
@@ -114,7 +116,7 @@ const FormAddTech = ({
 
               <StyledForm onSubmit={handleSubmit(onSubmitFunction)}>
                 <label>
-                  Tech name
+                  Please select a tech
                   <StyledTextField
                     id="transition-modal-description"
                     sx={{ mt: 2 }}
@@ -122,10 +124,17 @@ const FormAddTech = ({
                     size="small"
                     color="secondary"
                     placeholder="Tech name"
+                    value={techTitle}
+                    select
                     {...register("title")}
-                    error={errors.title ? true : false}
-                    helperText={errors.title ? errors.title.message : null}
-                  />
+                    onChange={handleChangeTitle}
+                  >
+                    {userTechs.map((tech) => (
+                      <MenuItem key={tech.title} value={tech.title}>
+                        {tech.title}
+                      </MenuItem>
+                    ))}
+                  </StyledTextField>
                 </label>
 
                 <label>
@@ -134,10 +143,10 @@ const FormAddTech = ({
                     id="outlined-select-module"
                     size="small"
                     color="secondary"
-                    {...register("status")}
                     select
-                    value={statusAdd}
-                    onChange={handleChange}
+                    value={currentTechStatus}
+                    {...register("status")}
+                    onChange={handleChangeStatus}
                   >
                     {techStatus.map((option) => (
                       <MenuItem key={option.value} value={option.value}>
@@ -146,9 +155,9 @@ const FormAddTech = ({
                     ))}
                   </StyledTextField>
                 </label>
-                <StyledButton type="submit">Add tech</StyledButton>
+                <StyledButton type="submit">Edit tech</StyledButton>
               </StyledForm>
-            </StyledBox>
+            </Box>
           </Fade>
         </StyledModal>
       )}
@@ -167,4 +176,4 @@ const FormAddTech = ({
   );
 };
 
-export default FormAddTech;
+export default ModalEdit;
