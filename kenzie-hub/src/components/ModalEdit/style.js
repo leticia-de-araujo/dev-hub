@@ -1,10 +1,9 @@
 import styled from "styled-components";
 import * as muiStyles from "@mui/material/styles";
-import { TextField, Button } from "@mui/material";
+import { Button, Select } from "@mui/material";
 
 export const StyledModal = styled.div`
   position: fixed;
-
   display: flex;
   align-items: center;
   justify-content: center;
@@ -31,7 +30,7 @@ export const StyledModal = styled.div`
       background-color: #343b41;
       height: 10%;
       padding: 12px 15px;
-      border-radius: 4px;
+      border-radius: 4px 4px 0 0;
 
       h2 {
         font-family: "Inter";
@@ -92,22 +91,14 @@ export const StyledButton = muiStyles.styled(Button)`
       font-size: 12.8347px;
 `;
 
-export const StyledTextField = muiStyles.styled(TextField)`
+export const StyledSelect = muiStyles.styled(Select)`
     width: 100%;
-
-  input {
-    color: #F8F9FA;
-    background-color: #343B41;
+    background: #343b41;
     border-radius: 0.3rem;
-  }
+    color: white;
+    font-size: 0.8rem;
 
- 
-    .css-jedpe8-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.MuiSelect-select {
-        color: #F8F9FA;
-        background-color: #343B41;
-        border-radius: 0.3rem;
-        font-size: 0.8rem;
-    }
+
 
     p {
         color: #F8F9FA;

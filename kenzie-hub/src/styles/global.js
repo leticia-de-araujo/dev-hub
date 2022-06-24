@@ -9,6 +9,11 @@ const GlobalStyle = createGlobalStyle`
         font-family: 'Inter', sans-serif;
     }
 
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
     .Toastify__toast-theme--dark {
       background-color: #212529;
     }
@@ -24,7 +29,6 @@ const GlobalStyle = createGlobalStyle`
     .Toastify__toast-icon {
       width: 26px;
     }
- 
     `;
 
 export const theme = createTheme({

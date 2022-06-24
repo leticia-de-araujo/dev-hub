@@ -232,12 +232,9 @@ const FormRegister = () => {
               color="secondary"
               {...register("course_module")}
               select
+              inputProps={{ MenuProps: { disableScrollLock: true } }}
               value={module}
               onChange={handleChange}
-              //   error={errors.course_module ? true : false}
-              //   helperText={
-              //     errors.course_module ? errors.course_module.message : null
-              //   }
             >
               {modules.map((option) => (
                 <MenuItem key={option.value} value={option.value}>

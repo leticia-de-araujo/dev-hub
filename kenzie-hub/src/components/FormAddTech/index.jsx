@@ -18,6 +18,7 @@ import {
   StyledTextField,
   StyledButton,
   StyledModal,
+  StyledSelect,
 } from "./style";
 
 const FormAddTech = ({
@@ -60,7 +61,6 @@ const FormAddTech = ({
         },
       })
       .then((response) => {
-    
         setUserTechs([...userTechs, response.data]);
         toast.success("Tech added successfully!", {
           position: "top-right",
@@ -130,12 +130,12 @@ const FormAddTech = ({
 
                 <label>
                   Select your current level of knowledge in this tech
-                  <StyledTextField
+                  <StyledSelect
                     id="outlined-select-module"
                     size="small"
                     color="secondary"
                     {...register("status")}
-                    select
+                    inputProps={{ MenuProps: { disableScrollLock: true } }}
                     value={statusAdd}
                     onChange={handleChange}
                   >
@@ -144,9 +144,11 @@ const FormAddTech = ({
                         {option.label}
                       </MenuItem>
                     ))}
-                  </StyledTextField>
+                  </StyledSelect>
                 </label>
-                <StyledButton type="submit">Add tech</StyledButton>
+                <StyledButton variant="contained" type="submit">
+                  Add tech
+                </StyledButton>
               </StyledForm>
             </StyledBox>
           </Fade>

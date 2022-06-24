@@ -10,12 +10,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { Box, Fade, IconButton, MenuItem } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 
-import {
-  StyledButton,
-  StyledForm,
-  StyledModal,
-  StyledTextField,
-} from "./style";
+import { StyledButton, StyledForm, StyledModal, StyledSelect } from "./style";
 
 const ModalEdit = ({
   userTechs,
@@ -117,15 +112,15 @@ const ModalEdit = ({
               <StyledForm onSubmit={handleSubmit(onSubmitFunction)}>
                 <label>
                   Please select a tech
-                  <StyledTextField
+                  <StyledSelect
                     id="transition-modal-description"
                     sx={{ mt: 2 }}
                     variant="outlined"
                     size="small"
                     color="secondary"
                     placeholder="Tech name"
+                    inputProps={{ MenuProps: { disableScrollLock: true } }}
                     value={techTitle}
-                    select
                     {...register("title")}
                     onChange={handleChangeTitle}
                   >
@@ -134,16 +129,16 @@ const ModalEdit = ({
                         {tech.title}
                       </MenuItem>
                     ))}
-                  </StyledTextField>
+                  </StyledSelect>
                 </label>
 
                 <label>
                   Select your current level of knowledge in this tech
-                  <StyledTextField
+                  <StyledSelect
                     id="outlined-select-module"
                     size="small"
                     color="secondary"
-                    select
+                    inputProps={{ MenuProps: { disableScrollLock: true } }}
                     value={currentTechStatus}
                     {...register("status")}
                     onChange={handleChangeStatus}
@@ -153,9 +148,11 @@ const ModalEdit = ({
                         {option.label}
                       </MenuItem>
                     ))}
-                  </StyledTextField>
+                  </StyledSelect>
                 </label>
-                <StyledButton type="submit">Edit tech</StyledButton>
+                <StyledButton variant="contained" type="submit">
+                  Edit tech
+                </StyledButton>
               </StyledForm>
             </Box>
           </Fade>
