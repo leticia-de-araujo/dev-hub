@@ -2,6 +2,48 @@ import styled from "styled-components";
 import * as muiStyles from "@mui/material/styles";
 import { TextField, Box, Button } from "@mui/material";
 
+export const StyledModal = styled.div`
+  position: fixed;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 100vh;
+  background-color: rgba(0, 0, 0, 0.35);
+  inset: 0;
+  z-index: 1;
+
+  .ModalAdd-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    background-color: #212529;
+    box-shadow: 0px 4px 40px -10px rgb(0 0 0 / 25%);
+    border-radius: 4px;
+
+    .ModalAdd-box-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #343b41;
+      height: 10%;
+      padding: 12px 15px;
+      border-radius: 4px;
+
+      h2 {
+        font-family: "Inter";
+        font-style: normal;
+        font-weight: 700;
+        font-size: 12px;
+        color: #f8f9fa;
+      }
+    }
+  }
+`;
+
 export const StyledBox = muiStyles.styled(Box)`
     position: absolute;
     top: 50%;
@@ -19,6 +61,7 @@ export const StyledBox = muiStyles.styled(Box)`
       background-color: #343B41;
       height: 10%;
       padding: 12px 15px;
+      border-radius: 4px;
 
       h2 {
       

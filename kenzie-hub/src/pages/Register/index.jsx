@@ -1,13 +1,14 @@
 import { Box } from "@mui/material";
 import FormRegister from "../../components/FormRegister";
 import NavBar from "../../components/NavBar";
+import { StyledDivRegister } from "./style";
 
 const Register = ({ homePage, setHomePage }) => {
   return (
-    <Box>
+    <StyledDivRegister>
       <NavBar homePage={homePage} setHomePage={setHomePage} />
       <FormRegister />
-    </Box>
+    </StyledDivRegister>
   );
 };
 export default Register;

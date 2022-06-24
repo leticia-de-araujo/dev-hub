@@ -9,6 +9,22 @@ const GlobalStyle = createGlobalStyle`
         font-family: 'Inter', sans-serif;
     }
 
+    .Toastify__toast-theme--dark {
+      background-color: #212529;
+    }
+
+    .Toastify__toast-theme--colored.Toastify__toast--success {
+      background-color: #3FE864;
+    }
+
+    .Toastify__toast-theme--colored.Toastify__toast--error {
+      background-color:  #E83F5B;
+    }
+
+    .Toastify__toast-icon {
+      width: 26px;
+    }
+ 
     `;
 
 export const theme = createTheme({

@@ -3,25 +3,27 @@ import { useState } from "react";
 
 import { ThemeProvider } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
+import EditIcon from "@mui/icons-material/Edit";
 
 import { StyledMain, StyledButton } from "./style";
 import { theme } from "../../styles/global";
 
 import FormAddTech from "../FormAddTech";
-import FormEditDeleteTech from "../FormEditDeleteTech";
-import CardTech from "../CardTech";
 
-const Main = ({
-  techs,
-  openModalAdd,
-  setOpenModalAdd,
-  openModalEditDelete,
-  setOpenModalEditDelete,
-}) => {
+import CardTech from "../CardTech";
+import ModalEdit from "../ModalEdit";
+
+const Main = ({ techs, openModalAdd, setOpenModalAdd }) => {
   const [userTechs, setUserTechs] = useState(techs);
+
+  const [modalEdit, setModalEdit] = useState(false);
 
   const handleOpenModalAdd = () => {
     setOpenModalAdd(true);
+  };
+
+  const openModalEdit = () => {
+    setModalEdit(true);
   };
 
   const techStatus = [
@@ -43,32 +45,40 @@ const Main = ({
     <StyledMain>
       <ThemeProvider theme={theme}>
         <div className="Main-topDiv">
-          <div className="Main-topDiv-left">
-            <h3>Technologies</h3>
-            <span>Click on a technology to edit or delete it</span>
-          </div>
+          <h3>Technologies</h3>
 
-          <StyledButton
-            variant="filled"
-            aria-label="add"
-            onClick={handleOpenModalAdd}
-          >
-            <AddIcon sx={{ color: "#fff" }} />
-          </StyledButton>
+          <div className="Main-topDiv-buttons">
+            <StyledButton
+              variant="filled"
+              aria-label="add"
+              onClick={handleOpenModalAdd}
+            >
+              <AddIcon sx={{ color: "#fff" }} />
+            </StyledButton>
+
+            <StyledButton
+              variant="filled"
+              aria-label="edit"
+              onClick={openModalEdit}
+            >
+              <EditIcon />
+            </StyledButton>
+          </div>
         </div>
         <ul className="Main-ul">
           {userTechs.length !== 0 &&
             userTechs.map((tech) => {
               return (
-                <>
-                  <CardTech
-                    key={tech.id}
-                    tech={tech}
-                    techStatus={techStatus}
-                    openModalEditDelete={openModalEditDelete}
-                    setOpenModalEditDelete={setOpenModalEditDelete}
-                  />
-                </>
+                <CardTech
+                  key={tech.id}
+                  tech={tech}
+                  techStatus={techStatus}
+                  modalEdit={modalEdit}
+                  setModalEdit={setModalEdit}
+                  techs={techs}
+                  userTechs={userTechs}
+                  setUserTechs={setUserTechs}
+                />
               );
             })}
         </ul>
@@ -80,6 +90,18 @@ const Main = ({
           openModalAdd={openModalAdd}
           setOpenModalAdd={setOpenModalAdd}
         />
+
+        {modalEdit && (
+          <ModalEdit
+            techs={techs}
+            userTechs={userTechs}
+            setUserTechs={setUserTechs}
+            techStatus={techStatus}
+            modalEdit={modalEdit}
+            setModalEdit={setModalEdit}
+            openModalEdit={openModalEdit}
+          />
+        )}
       </ThemeProvider>
     </StyledMain>
   );
