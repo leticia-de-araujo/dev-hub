@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import Header from "../../components/Header";
 import Main from "../../components/Main";
 import NavBar from "../../components/NavBar";
@@ -16,6 +16,8 @@ const Home = ({ homePage, setHomePage }) => {
 
   const [openModalEditDelete, setOpenModalEditDelete] = useState(false);
 
+  const history = useHistory()
+
   useEffect(() => {
     api
       .get(`/users/${params.id}`)
@@ -24,6 +26,7 @@ const Home = ({ homePage, setHomePage }) => {
       })
       .catch((error) => {
         console.log(error);
+        history.push("/404")
       });
   }, []);
 
@@ -40,7 +43,7 @@ const Home = ({ homePage, setHomePage }) => {
           setOpenModalEditDelete={setOpenModalEditDelete}
         />
       </StyledDivHome>
-    )
+    ) 
   );
 };
 

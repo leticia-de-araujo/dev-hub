@@ -12,7 +12,6 @@ import "react-toastify/dist/ReactToastify.css";
 import { StyledPaper, StyledForm, StyledTextField } from "./style";
 import { theme } from "../../styles/global";
 import api from "../../services/api";
-import { useEffect } from "react";
 
 const FormLogin = () => {
   const history = useHistory();
@@ -36,9 +35,7 @@ const FormLogin = () => {
     defaultValues: { email: "", password: "" },
   });
 
-
   const onSubmitFunction = (dataUser) => {
-   ;
     window.localStorage.clear();
     api
       .post("/sessions", dataUser, {
@@ -55,7 +52,7 @@ const FormLogin = () => {
 
         toast.success("Successful login!", {
           position: "top-right",
-          autoClose: 1900,
+          autoClose: 900,
           hideProgressBar: false,
           closeOnClick: true,
           pauseOnHover: true,
@@ -68,7 +65,7 @@ const FormLogin = () => {
           history.push(`/home/${idUser}`);
         };
 
-        setTimeout(goToHome, 2200);
+        setTimeout(goToHome, 1300);
       })
       .catch((error) => {
         console.log(error);
