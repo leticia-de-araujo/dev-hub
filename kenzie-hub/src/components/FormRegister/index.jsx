@@ -9,7 +9,12 @@ import { ThemeProvider } from "@mui/material/styles";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import { StyledPaper, StyledForm, StyledTextField } from "./style";
+import {
+  StyledPaper,
+  StyledForm,
+  StyledTextField,
+  StyledSelect,
+} from "./style";
 import { theme } from "../../styles/global";
 import api from "../../services/api";
 import { useEffect, useState } from "react";
@@ -226,12 +231,11 @@ const FormRegister = () => {
           </label>
           <label>
             Select module
-            <StyledTextField
+            <StyledSelect
               id="outlined-select-module"
               size="small"
               color="secondary"
               {...register("course_module")}
-              select
               inputProps={{ MenuProps: { disableScrollLock: true } }}
               value={module}
               onChange={handleChange}
@@ -241,7 +245,7 @@ const FormRegister = () => {
                   {option.label}
                 </MenuItem>
               ))}
-            </StyledTextField>
+            </StyledSelect>
           </label>
 
           <Button

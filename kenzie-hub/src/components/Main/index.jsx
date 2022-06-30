@@ -65,23 +65,20 @@ const Main = ({ techs, openModalAdd, setOpenModalAdd }) => {
             </StyledButton>
           </div>
         </div>
-        <ul className="Main-ul">
-          {userTechs.length !== 0 &&
-            userTechs.map((tech) => {
+        {userTechs.length !== 0 && (
+          <ul className="Main-ul">
+            {userTechs.map((tech) => {
               return (
                 <CardTech
                   key={tech.id}
                   tech={tech}
-                  techStatus={techStatus}
-                  modalEdit={modalEdit}
-                  setModalEdit={setModalEdit}
-                  techs={techs}
                   userTechs={userTechs}
                   setUserTechs={setUserTechs}
                 />
               );
             })}
-        </ul>
+          </ul>
+        )}
 
         <FormAddTech
           techStatus={techStatus}
