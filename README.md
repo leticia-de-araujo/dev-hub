@@ -31,3 +31,5 @@ The layout was developed using the concept of mobile-first and responsiveness.
 - Material UI
 
 App link: https://kenzie-hub-rosy-ten.vercel.app/
+
+<img src="https://j.gifs.com/mqnGv0.gif" width=590 height=360/>
