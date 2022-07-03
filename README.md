@@ -4,7 +4,7 @@ The purpose of this project, promoted by Kenzie Academy Brazil, was to be a <b>h
 
 This application was developed in <b>React.js</b>, with the help of libraries of this technology.
 
-The features were implemented by making requests (GET, PUT, POST, DELETE) in an API provided by Kenzie Academy.
+The features were implemented by making requests (GET, PUT, POST, DELETE) in an API provided by Kenzie Academy, using Axios.
 
 In addition, the forms have validation to receive the data as expected and provide feedback to the user.
 
@@ -27,6 +27,7 @@ The layout was developed using the concept of mobile-first and responsiveness.
 - React Router Dom
 - React Toastify
 - Yup Resolver
+- Axios
 - Styled-components
 - Material UI
 
