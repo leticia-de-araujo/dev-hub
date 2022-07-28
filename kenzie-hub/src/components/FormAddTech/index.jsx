@@ -9,7 +9,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import { Backdrop, Modal, Fade, MenuItem, IconButton } from "@mui/material";
+import { Fade, MenuItem, IconButton } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 
 import {

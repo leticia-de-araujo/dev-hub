@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import * as muiStyles from "@mui/material/styles";
-import { Paper, TextField } from "@mui/material";
+import { Paper, Select, TextField } from "@mui/material";
 
 export const StyledPaper = muiStyles.styled(Paper)`
     background-color: #212529;
@@ -72,14 +72,22 @@ export const StyledTextField = muiStyles.styled(TextField)`
     background-color: #343B41;
     border-radius: 0.3rem;
 }
-    .css-jedpe8-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.MuiSelect-select {
+  
+    p {
         color: #F8F9FA;
-        background-color: #343B41;
-        border-radius: 0.3rem;
-        font-size: 0.75rem;
     }
+`;
+
+export const StyledSelect = muiStyles.styled(Select)`
+    width: 100%;
+    background: #343b41;
+    border-radius: 0.3rem;
+    color: white;
+    font-size: 0.8rem;
+
 
     p {
         color: #F8F9FA;
     }
+  
 `;

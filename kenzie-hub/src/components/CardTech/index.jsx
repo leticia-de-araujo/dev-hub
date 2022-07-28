@@ -11,15 +11,7 @@ import { StyledButton, StyledModal } from "./style";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const CardTech = ({
-  tech,
-  techStatus,
-  modalEdit,
-  setModalEdit,
-  techs,
-  userTechs,
-  setUserTechs,
-}) => {
+const CardTech = ({ tech, userTechs, setUserTechs }) => {
   const [modalDelete, setModalDelete] = useState(false);
 
   const openModalDelete = () => {
@@ -45,8 +37,6 @@ const CardTech = ({
   const userToken = window.localStorage.getItem("token");
 
   const deleteTech = (techToDelete) => {
-
-
     api
       .delete(`/users/techs/${techToDelete.id}`, {
         headers: {
@@ -54,7 +44,6 @@ const CardTech = ({
         },
       })
       .then((response) => {
-       
         toast.success("Tech deleted successfully!", {
           position: "top-right",
           autoClose: 2200,

@@ -1,15 +1,15 @@
 import FormLogin from "../../components/FormLogin";
 
-import Logo from "../../imgs/Logo.png";
 
 import { Box } from "@mui/material";
+import { StyledHeader } from "./style";
 
 const Login = () => {
   return (
     <Box>
-      <header style={{ textAlign: "center" }}>
-        <img src={Logo} alt="Logo Kenzie Hub" />
-      </header>
+      <StyledHeader>
+        <h1>DevHub</h1>
+      </StyledHeader>
 
       <FormLogin />
     </Box>

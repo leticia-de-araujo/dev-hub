@@ -10,9 +10,10 @@ export const StyledNavBar = styled.nav`
   border-bottom: 1px solid #212529;
   padding-bottom: 1rem;
 
-  img {
-    width: 6.125rem;
-    height: 1rem;
+  h1 {
+    font-family: "Inter", sans-serif;
+    color: #ff577f;
+    font-size: 1.25rem;
   }
 `;
 
