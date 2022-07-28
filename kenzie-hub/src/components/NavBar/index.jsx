@@ -3,7 +3,6 @@ import { ThemeProvider } from "@mui/material/styles";
 import { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 
-import Logo from "../../imgs/Logo.png";
 import { StyledButton, StyledNavBar, theme } from "./style";
 
 const NavBar = ({ homePage, setHomePage }) => {
@@ -23,7 +22,7 @@ const NavBar = ({ homePage, setHomePage }) => {
   return (
     <ThemeProvider theme={theme}>
       <StyledNavBar>
-        <img src={Logo} alt="Logo Kenzie Hub" />
+        <h1>DevHub</h1>
 
         <StyledButton variant="contained" onClick={goToLogin}>
           {!homePage ? "Go back to Login" : "Sign out"}
