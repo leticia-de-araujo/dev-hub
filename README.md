@@ -13,25 +13,30 @@ In addition, the forms have validation to receive the data as expected and provi
 The layout was developed using the concept of mobile-first and responsiveness.
 
 <h3>Features:</h3>
-- User registration (the application can only be used by registered users)
-- User login
-- Adding technologies to the dashboard
-- Edition of registered technologies
-- Deletion of registered technologies
-- Error page
+<ul>
+  <li>User registration (the application can only be used by registered users)</li>
+  <li>User login</li>
+  <li>Adding technologies to the dashboard</li>
+  <li>Edition of registered technologies</li>
+  <li>Deletion of registered technologies</li>
+  <li>Error page</li>
+</ul>
+
 
 <h3>Technologies used:</h3>
-- HTML
-- CSS
-- JavaScript
--  React.js
-- React Hook Form
-- React Router Dom
-- React Toastify
-- Yup Resolver
-- Axios
-- Styled-components
-- Material UI
+<ul>
+  <li>HTML</li>
+  <li>CSS</li>
+  <li>JavaScript</li>
+  <li>React.js</li>
+  <li>React Hook Form</li>
+  <li>React Router Dom</li>
+  <li>React Toastify</li>
+  <li>Yup Resolver</li>
+  <li>Axios</li>
+  <li>Styled-components</li>
+  <li>Material UI</li>
+</ul>
 
 App link: https://kenzie-hub-rosy-ten.vercel.app/
 
