@@ -1,4 +1,6 @@
-## Kenzie Hub 👩‍💻
+## <h1>Kenzie Hub 👩‍💻</h1>
+
+<h3>About this project</h3>
 
 The purpose of this project, promoted by Kenzie Academy Brazil, was to be a <b>hub for programmers' portfolios</b>.
 
@@ -10,7 +12,7 @@ In addition, the forms have validation to receive the data as expected and provi
 
 The layout was developed using the concept of mobile-first and responsiveness.
 
-<b>Features:</b>
+<h3>Features:</h3>
 - User registration (the application can only be used by registered users)
 - User login
 - Adding technologies to the dashboard
@@ -18,7 +20,7 @@ The layout was developed using the concept of mobile-first and responsiveness.
 - Deletion of registered technologies
 - Error page
 
-<b>Technologies used:</b>
+<h3>Technologies used:</h3>
 - HTML
 - CSS
 - JavaScript
