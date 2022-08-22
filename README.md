@@ -1,5 +1,8 @@
 ## <h1>Kenzie Hub 👩‍💻</h1>
 
+[EN/PT-BR]
+
+[EN]
 <h3>About this project</h3>
 
 The purpose of this project, promoted by Kenzie Academy Brazil, was to be a <b>hub for programmers' portfolios</b>.
@@ -22,7 +25,6 @@ The layout was developed using the concept of mobile-first and responsiveness.
   <li>Error page</li>
 </ul>
 
-
 <h3>Technologies used:</h3>
 <ul>
   <li>HTML</li>
@@ -41,3 +43,47 @@ The layout was developed using the concept of mobile-first and responsiveness.
 App link: https://kenzie-hub-rosy-ten.vercel.app/
 
 <img src="https://j.gifs.com/mqnGv0.gif" width=590 height=360/>
+
+<hr></hr>
+
+[PT-BR]
+<h3>Sobre este projeto</h3>
+
+O objetivo deste projeto, promovido pela Kenzie Academy Brasil, foi ser um <b>hub para portfólios de programadores</b>.
+
+Esta aplicação foi desenvolvida em <b>React.js</b>, com o auxílio de bibliotecas desta tecnologia.
+
+As funcionalidades foram implementadas fazendo requisições (GET, PUT, POST, DELETE) em uma API fornecida pela Kenzie Academy, utilizando Axios.
+
+Além disso, os formulários possuem validação para receber os dados conforme o esperado e fornecer feedback ao usuário.
+
+O layout foi desenvolvido utilizando os conceitos de mobile-first e responsividade.
+
+<h3>Funcionalidades:</h3>
+<ul>
+  <li>Registro do usuário (o aplicativo só pode ser usado por usuários registrados)</li>
+  <li>Login do usuário</li>
+  <li>Adicionar tecnologias ao painel</li>
+  <li>Edição de tecnologias registradas</li>
+  <li>Exclusão de tecnologias registradas</li>
+  <li>Página de erro</li>
+</ul>
+
+<h3>Tecnologias utilizadas:</h3>
+<ul>
+  <li>HTML</li>
+  <li>CSS</li>
+  <li>JavaScript</li>
+  <li>React.js</li>
+  <li>Reack Hook Form</li>
+  <li>React Router Dom</li>
+  <li>React Toastify</li>
+  <li>Yup Resolver</li>
+  <li>Axios</li>
+  <li>Styled-components</li>
+  <li>Material UI</li>
+</ul>
+
+Link do aplicativo: https://kenzie-hub-rosy-ten.vercel.app/
+
+<img src="https://j.gifs.com/mqnGv0.gif" largura=590 altura=360/>
