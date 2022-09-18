@@ -1,4 +1,4 @@
-## <h1>Kenzie Hub 👩‍💻</h1>
+## <h1>DevHub 👩‍💻</h1>
 
 [EN/PT-BR]
 
